@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+void selection_sort(int arr[], int n);
+int main()
+{
+    int t;
+    cout << "enter no. of test cases: ";
+    cin >> t;
+    for (int k = 1; k <= t; k++)
+    {
+        cout << "The test case no. is : " << k << endl;
+        int n;
+        cout << "enter the size of the array: ";
+        cin >> n;
+
+        int arr[n];
+        cout << "enter the elememts of the array: ";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+
+        selection_sort(arr, n);
+        cout << "array after sorting: ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void selection_sort(int arr[], int n)
+{
+    int pos = 0;
+    int pass = 0, swap = 0;
+    int min;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        min = arr[i];
+        pos = i;
+        for (int j = i + 1; j < n; j++)
+        {
+            if (min > arr[j])
+            {
+                min = arr[j];
+                pos = j;
+            }
+        }
+
+        if (pos != i)
+        {
+            arr[pos] = arr[i];
+            arr[i] = min;
+            swap++;
+        }
+
+        pass++;
+    }
+
+    cout << "Passes: " << pass << endl
+         << "Swaps : " << swap << endl;
+}
