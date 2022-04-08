@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+void insertion_sort(int arr[], int n);
+int main()
+{
+    int t;
+    cout << "enter no. of test cases: ";
+    cin >> t;
+    for (int k = 1; k <= t; k++)
+    {
+        cout << "The test case no. is : " << k << endl;
+        int n;
+        cout << "enter the size of the array: ";
+        cin >> n;
+
+        int arr[n];
+        cout << "enter the elememts of the array: ";
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
+        }
+
+        insertion_sort(arr, n);
+        cout << "array after sorting: ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void insertion_sort(int arr[], int n)
+{
+    int temp = 0, i, j, shifts = 0, comp = 0;
+
+    // we assume that the first element of the array is already sorted
+    // so start checking from index i=1 to i=n-1
+    for (int i = 1; i < n; i++)
+    {
+        // aaray={3,1 ,5,2,4,6,7}
+        // here storing the value of a[1] into temp // for ex a[1]=1 so temp =1
+        temp = arr[i];
+
+        // initialize j =i-1   i.e  j=1-1 so j=0
+        j = i - 1;
+
+        while (j >= 0 && arr[j] > temp)
+        {
+            // now we will compare arrj[0] with temp  since arrj[0]=3 temp=1 since 3>1
+            // now move value of arrj[0] to arrj[1]
+            arr[j + 1] = arr[j]; // arr[1]=3
+            j--;                 // decrement j by 1 j=-1
+            comp++;
+        }
+        // since j=-1 come out of while loop
+        // now move the value of temp to arrj[0]=temp
+        arr[j + 1] = temp; // arrj[0]=1
+
+        // array ={1,3,5,2,4,6,7}
+        // now check  for i=2
+
+        shifts++;
+    }
+    cout << "The no . of comparisons  are:" << comp << endl;
+    cout << "The no . of shifts are:" << shifts << endl;
+}
