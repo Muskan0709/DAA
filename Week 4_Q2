@@ -1,0 +1,96 @@
+#include <iostream>
+using namespace std;
+
+void quick_sort(int a[], int lb, int ub);
+int partiton(int a[], int lb, int ub);
+
+void quick_sort(int a[], int lb, int ub)
+{
+    if (lb < ub)
+    {
+
+        int p = partiton(a, lb, ub);
+
+        quick_sort(a, lb, p - 1);
+
+        quick_sort(a, p + 1, ub);
+    }
+}
+
+int partiton(int a[], int lb, int ub)
+{
+    int pivot = a[lb];
+
+    int i = lb;
+    int j = ub;
+    int temp = 0;
+
+    while (i < j)
+    {
+        while (pivot >= a[i] && i < j)
+        {
+            i++;
+        }
+
+        while (pivot < a[j])
+        {
+            j--;
+        }
+        // now swap a[i] & a[j]
+        if (i < j)
+        {
+            temp = a[i];
+            a[i] = a[j];
+            a[j] = temp;
+        }
+    }
+    // now come out while loop if i crosses j i.e i becomes greater than j i.e(i>j)
+    // now we got the position of the pivot element
+    // the position of j will give the position of pivot elememt
+    // so swap a[j] & pivot
+    a[lb] = a[j];
+    a[j] = pivot;
+
+    return j;
+}
+
+int main()
+{
+    int t;
+    cout << "Enter the no. of test cases: ";
+    cin >> t;
+
+    for (int k = 1; k <= t; k++)
+    {
+        cout << "the test case no. is :" << k << endl;
+
+        int n;
+        cout << "Enter the size of the array: ";
+        cin >> n;
+
+        int a[n];
+        cout << "Enter the elements of array : ";
+        for (int v = 0; v < n; v++)
+        {
+            cin >> a[v];
+        }
+
+        cout << "the array before sorting :";
+        for (int v = 0; v < n; v++)
+        {
+            cout << a[v] << " ";
+        }
+        cout << endl;
+
+        cout << "hello" << endl;
+
+        quick_sort(a, 0, n - 1);
+
+        cout << "the array after sorting :";
+        for (int v = 0; v < n; v++)
+        {
+            cout << a[v] << " ";
+        }
+        cout << endl;
+    }
+}
